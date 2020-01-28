@@ -5,16 +5,20 @@ need to be sorted. You have at your disposal a set of int values, 2 stacks and a
 instructions to manipulate both stacks.
 
 Your goal ? Write 2 programs in C:
+
 • The first, named checker which takes integer arguments and reads instructions on
 the standard output. Once read, checker executes them and displays OK if integers
 are sorted. Otherwise, it will display KO.
+
 • The second one called push_swap which calculates and displays on the standard
 output the smallest progam using Push_swap instruction language that sorts integer arguments received.
+
 Easy?
 We’ll see about that...
 
-• The goal is to sort in ascending order numbers into stack a.
-• To do this you have the following operations at your disposal:
+The goal is to sort in ascending order numbers into stack a.
+To do this you have the following operations at your disposal:
+
 sa : swap a - swap the first 2 elements at the top of stack a. Do nothing if there
 is only one or no elements).
 sb : swap b - swap the first 2 elements at the top of stack b. Do nothing if there
