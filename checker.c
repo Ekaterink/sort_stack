@@ -4,7 +4,7 @@
 #include "LIBFT/libft.h"
 #include "LIBFT/dlist.h"
 
-void    *solve_command(t_dlist **stack_a, t_dlist **stack_b, char *str)
+void    solve_command(t_dlist **stack_a, t_dlist **stack_b, char *str)
 {
     if (ft_strcmp("sa", str) == 0)
         oper_s(stack_a);
@@ -71,34 +71,58 @@ void    do_operations(t_dlist **stack_a, t_dlist **stack_b, char **str)
     }
 }
 
+int     list_len(t_dlist *stack)
+{
+    t_dlist *list;
+    int count;
+
+    count = 0;
+    list = stack;
+    while (list)
+    {
+        count++;
+        list = list->next;
+    }
+    return (count);
+}
+
 void    checker_OK(t_dlist **stack_a, t_dlist **stack_b)
 {
     int num;
     int prev;
+    int flag;
+    t_dlist *a;
 
+    a = (*stack_a);
+    flag = 0;
     if ((*stack_b) == NULL)
     {
-        prev = (*stack_a)->num;
-        while ((*stack_a)->next)
+        prev = a->num;
+        while (a->next)
         {
-            (*stack_a) = (*stack_a)->next;
-            num = (*stack_a)->num;
+            a = a->next;
+            num = a->num;
             if (num < prev)
             {
-                printf("%s", "KO");
+                printf("%s", "KO\n");
+                flag = 1;
                 break;
             }
             else
             {
-                prev = (*stack_a)->num;
+                prev = a->num;
             }
         }
+        if (flag == 0)
+            printf("%s", "OК\n");
     }
     else
-        printf("%s", "KO");
+        printf("%s", "KO\n");
 }
 
 ////////////////////////////////      main       //////////////////////
+
+/*
 
 int main(int ac, char **av)
 {
@@ -126,35 +150,35 @@ int main(int ac, char **av)
             }
             i++;
         }
-        if (proverka == 1)
-        {
+        if (proverka == 1) {
             do_operations(&stack_a, &stack_b, str);
             checker_OK(&stack_a, &stack_b);
+
+
+//                 i = 0;
+//                 while (str[i]) // check of str
+//                 {
+//                     printf("%s", str[i]);
+//                     i++;
+//                 }
+
+            printf("%s", "stack_A: ");
+            while (stack_a) // check of stack_a
+            {
+                printf("%d", stack_a->num);
+                stack_a = stack_a->next;
+            }
+
+            printf("%s", "\nstack_B: ");
+            while (stack_b) // check of stack_b
+            {
+                printf("%d", stack_b->num);
+                stack_b = stack_b->next;
+            }
             return 0;
-        }
-
-
-   /*     i = 0;
-        while (str[i]) // check of str
-        {
-            printf("%s", str[i]);
-            i++;
-        }
-*/
-        printf("%s", "stack_A: ");
-        while (stack_a) // check of stack_a
-        {
-            printf("%d", stack_a->num);
-            stack_a = stack_a->next;
-        }
-
-        printf("%s", "\nstack_B: ");
-        while (stack_b) // check of stack_b
-        {
-            printf("%d", stack_b->num);
-            stack_b = stack_b->next;
         }
     }
 
     return 0;
 }
+*/

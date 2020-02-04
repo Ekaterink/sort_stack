@@ -9,6 +9,7 @@ void    oper_s(t_dlist **stack_a)
 {
     t_dlist *begin_a;
     t_dlist *second_el;
+    t_dlist *third_el;
     int count;
 
     count = 0;
@@ -24,10 +25,12 @@ void    oper_s(t_dlist **stack_a)
     {
         begin_a = (*stack_a);
         second_el = begin_a->next;
+        third_el = second_el->next;
         begin_a->next = second_el->next;
         begin_a->previous = second_el;
         second_el->next = begin_a;
         second_el->previous = NULL;
+        third_el->previous = begin_a;
         (*stack_a) = second_el;
     }
 }
